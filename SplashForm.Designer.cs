@@ -1,4 +1,4 @@
-﻿namespace RemoteLog
+﻿namespace VideoSplashScreenDemo
 {
     partial class SplashForm
     {

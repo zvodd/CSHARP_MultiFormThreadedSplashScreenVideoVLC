@@ -5,7 +5,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace RemoteLog
+namespace VideoSplashScreenDemo
 {
     internal static class Program
     {
@@ -18,16 +18,18 @@ namespace RemoteLog
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            AutoResetEvent readyEvent = new AutoResetEvent(false);
+            AutoResetEvent firstSplashDoneEvent = new AutoResetEvent(false);
 
-            Action readyCallback = () =>
+            Action splashdonecallback = () =>
             {
-                // Signal the main thread that SplashForm is ready
-                readyEvent.Set();
+                // Signal the main thread that SplashForm has comple
+                firstSplashDoneEvent.Set();
             };
 
             // Create a new thread for SplashForm
-            var splashForm = new SplashForm(readyCallback);
+            var splashForm = new SplashForm();
+            
+            splashForm.SplashDoneSignal += (EventHandler)((sender, e) => splashdonecallback());
             var splashThread = new Thread(() =>
             {   
                 Application.Run(splashForm); // Run SplashForm on the thread
@@ -37,9 +39,9 @@ namespace RemoteLog
             splashThread.SetApartmentState(ApartmentState.STA);
             splashThread.Start();
 
-            readyEvent.WaitOne();
+            firstSplashDoneEvent.WaitOne();
 
-            // Now that SplashForm is ready, show Form2
+            // Now that SplashForm is completed its action, show MainWindow
             MainWindow mainwin = new MainWindow(splashForm);
             Application.Run(mainwin);
         }

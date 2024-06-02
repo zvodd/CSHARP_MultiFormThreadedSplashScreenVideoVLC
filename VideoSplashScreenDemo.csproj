@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{3E6D1A3E-C115-4861-9011-B61C7D171B57}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>RemoteLog</RootNamespace>
-    <AssemblyName>RemoteLog</AssemblyName>
+    <RootNamespace>VideoSplashScreenDemo</RootNamespace>
+    <AssemblyName>VideoSplashScreenDemo</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -92,6 +92,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="SplashForm.resx">
       <DependentUpon>SplashForm.cs</DependentUpon>
